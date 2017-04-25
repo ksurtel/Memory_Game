@@ -31,8 +31,6 @@ body {
 .faceUp, .faceDown {
     backface-visibility: hidden;
     position: absolute;
-    /*top: 0;
-    left: 0;*/
     perspective: 1000px;
 }
 .faceUp {
