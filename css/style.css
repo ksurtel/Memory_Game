@@ -1,0 +1,43 @@
+* {
+	box-sizing: border-box;
+}
+body {
+    margin: 0;
+    background-color: #34495e;
+}
+#container {
+    width: 70%;
+    margin: auto;
+    padding: 1%;
+    background-color: #1d1d1d;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    box-shadow: 0 0 50px #1d1d1d;
+}
+.tile {
+    height: 150px;
+    width: 100px;
+    margin: 1em;
+    display: inline-block;
+    position: relative;
+    transition: 0.6s;
+	transform-style: preserve-3d;
+    box-shadow: 0 0 15px black;
+}
+.flipper {
+    transform: rotateY(180deg);
+}
+.faceUp, .faceDown {
+    backface-visibility: hidden;
+    position: absolute;
+    /*top: 0;
+    left: 0;*/
+    perspective: 1000px;
+}
+.faceUp {
+    transform: rotateY(0deg);
+}
+.faceDown {
+    transform: rotateY(180deg);
+}
