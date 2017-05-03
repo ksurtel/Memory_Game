@@ -84,5 +84,5 @@ document.addEventListener("DOMContentLoaded", function (event) {
       tile[i].addEventListener('click', match);
     }
   }
-  createGrid(10);
+  createGrid(6);
 });
