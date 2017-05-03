@@ -28,7 +28,7 @@ body {
 .flipper {
     transform: rotateY(180deg);
 }
-.faceUp, .faceDown {
+.faceDown {
     backface-visibility: hidden;
     position: absolute;
     perspective: 1000px;
