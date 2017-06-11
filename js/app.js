@@ -1,12 +1,12 @@
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener('DOMContentLoaded', function (event) {
 
   const container = document.getElementById('container');
   var tile = [];
   var image = [];
 
   var guessCount = 0;
-  var guess1 = "";
-  var guess2 = "";
+  var guess1 = '';
+  var guess2 = '';
   var matched = [];
 
   const getImages = (n) => {
@@ -19,9 +19,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
   const createTiles = (n) => {
     for (var i = 0; i < n; i++) {
-      var newTile = document.createElement("div");
+      var newTile = document.createElement('div');
       newTile.innerHTML = `<img src='${image[i]}' class='faceDown'><img src='back.jpg'>`;
-      newTile.className = "tile";
+      newTile.className = 'tile';
       tile.push(newTile);
     }
   }
@@ -44,14 +44,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
   function match() {
     if (guessCount === 0) {
-      this.classList.toggle("flipper");
+      this.classList.toggle('flipper');
       guess1 = this;
       guessCount += 1;
     } else if (guessCount === 1 && guess1 !== this) {
       this.classList.toggle('flipper');
       guess2 = this;
       guessCount += 1;
-      if (guess1.firstChild.getAttribute("src") === guess2.firstChild.getAttribute("src")) {
+      if (guess1.firstChild.getAttribute('src') === guess2.firstChild.getAttribute('src')) {
         guess1.removeEventListener('click', match);
         guess2.removeEventListener('click', match);
         guessCount = 0;
