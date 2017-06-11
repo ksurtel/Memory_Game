@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function (event) {
 
-  var container = document.getElementById('container');
+  const container = document.getElementById('container');
   var tile = [];
   var image = [];
 
@@ -9,15 +9,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   var guess2 = "";
   var matched = [];
 
-  function createGrid(n) {
-    getImages(n);
-    createTiles(n);
-    shuffleTiles(tile);
-    addTiles();
-    addEvent();
-  }
-
-  function getImages(n) {
+  const getImages = (n) => {
     for (var i = 1; i <= n / 2; i++) {
       var rand = Math.floor(Math.random() * (500 - 0)) + 0;
       image.push(`https://unsplash.it/100/150?image=+${rand}`);
@@ -25,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 
-  function createTiles(n) {
+  const createTiles = (n) => {
     for (var i = 0; i < n; i++) {
       var newTile = document.createElement("div");
       newTile.innerHTML = `<img src='${image[i]}' class='faceDown'><img src='back.jpg'>`;
@@ -34,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 
-  function shuffleTiles(array) {
+  const shuffleTiles = (array) => {
     for (var i = array.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
       var temp = array[i];
@@ -44,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     return array;
   }
 
-  function addTiles() {
+  const addTiles = () => {
     for (var i = 0; i < tile.length; i++) {
       container.appendChild(tile[i]);
     }
@@ -70,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
           console.log('winner winner chicken dinner');
         }
       } else {
-        window.setTimeout(function () {
+        window.setTimeout(() => {
           guess1.classList.toggle('flipper');
           guess2.classList.toggle('flipper');
           guessCount = 0;
@@ -79,10 +71,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 
-  function addEvent() {
+  const addEvent = () => {
     for (var i = 0; i < tile.length; i++) {
       tile[i].addEventListener('click', match);
     }
   }
-  createGrid(6);
+  // createGrid(20);
+  ((n) => {
+    getImages(n);
+    createTiles(n);
+    shuffleTiles(tile);
+    addTiles();
+    addEvent();
+  })(50);
 });
