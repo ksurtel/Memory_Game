@@ -1,48 +1,64 @@
 document.addEventListener('DOMContentLoaded', function (event) {
 
   const container = document.getElementById('container');
-  var tile = [];
-  var image = [];
+  let tile = [];
+  let image = [];
 
-  var guessCount = 0;
-  var guess1 = '';
-  var guess2 = '';
-  var matched = [];
+  let guessCount = 0;
+  let guess1 = '';
+  let guess2 = '';
+  let matched = [];
+
+  const randomNumber = () => Math.floor(Math.random() * 500);
+
+  /* Partial fix to duplicating images */
+
+  // const randomNumber = () => Math.floor(Math.random() * 50);
+  // let arr = [];
+  // let newNr = 0;
+  // const randomArray = {
+  //   while(arr.length < 50) {
+  //     newNr = randomNumber();
+  //     if (arr.indexOf(newNr) === -1) {
+  //       arr.push(newNr);
+  //     }
+  //   }
+  // return arr;
+  // };
+  // randomArray();
 
   const getImages = (n) => {
-    for (var i = 1; i <= n / 2; i++) {
-      var rand = Math.floor(Math.random() * (500 - 0)) + 0;
-      image.push(`https://unsplash.it/100/150?image=+${rand}`);
-      image.push(`https://unsplash.it/100/150?image=+${rand}`);
+    for (let i = 1; i <= n / 2; i++) {
+      image.push(`https://unsplash.it/100/150?image=+${randomNumber()}`);
+      image.push(`https://unsplash.it/100/150?image=+${randomNumber()}`);
     }
-  }
+    console.table(image)
+  };
 
   const createTiles = (n) => {
-    for (var i = 0; i < n; i++) {
-      var newTile = document.createElement('div');
+    for (let i = 0; i < n; i++) {
+      const newTile = document.createElement('div');
       newTile.innerHTML = `<img src='${image[i]}' class='faceDown'><img src='back.jpg'>`;
       newTile.className = 'tile';
       tile.push(newTile);
     }
-  }
+  };
 
   const shuffleTiles = (array) => {
-    for (var i = array.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var temp = array[i];
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      let temp = array[i];
       array[i] = array[j];
       array[j] = temp;
     }
     return array;
+  };
+
+  function addTiles() {
+    tile.forEach(tile => container.appendChild(tile))
   }
 
-  const addTiles = () => {
-    for (var i = 0; i < tile.length; i++) {
-      container.appendChild(tile[i]);
-    }
-  }
-
-  function match() {
+  function match(e) {
     if (guessCount === 0) {
       this.classList.toggle('flipper');
       guess1 = this;
@@ -71,17 +87,17 @@ document.addEventListener('DOMContentLoaded', function (event) {
     }
   }
 
-  const addEvent = () => {
-    for (var i = 0; i < tile.length; i++) {
+  const addEvent = (e) => {
+    for (let i = 0; i < tile.length; i++) {
       tile[i].addEventListener('click', match);
     }
-  }
-  // createGrid(20);
+  };
+
   ((n) => {
     getImages(n);
     createTiles(n);
     shuffleTiles(tile);
     addTiles();
     addEvent();
-  })(50);
+  })(10);
 });
