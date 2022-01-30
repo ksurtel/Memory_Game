@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   let guess2 = '';
   let matched = [];
 
-  const randomNumber = () => Math.floor(Math.random() * 500);
+  const randomNumber = () => Math.floor((Math.random() + 1) * 100);
   console.log(randomNumber())
 
   /* Partial fix to duplicating images */
@@ -31,8 +31,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
   const getImages = (n) => {
     for (let i = 1; i <= n / 2; i++) {
       let number = randomNumber()
-    //  image.push(`https://picsum.photos/100/150/${randomNumber()}`);
-    //  image.push(`https://picsum.photos/100/150/${randomNumber()}`);
       image.push(`https://picsum.photos/id/${number}/100/150`);
       image.push(`https://picsum.photos/id/${number}/100/150`);
       console.log(number)
