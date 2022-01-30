@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   let matched = [];
 
   const randomNumber = () => Math.floor(Math.random() * 500);
+  console.log(randomNumber())
 
   /* Partial fix to duplicating images */
 
@@ -29,8 +30,12 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
   const getImages = (n) => {
     for (let i = 1; i <= n / 2; i++) {
-      image.push(`https://unsplash.it/100/150?image=+${randomNumber()}`);
-      image.push(`https://unsplash.it/100/150?image=+${randomNumber()}`);
+      let number = randomNumber()
+    //  image.push(`https://picsum.photos/100/150/${randomNumber()}`);
+    //  image.push(`https://picsum.photos/100/150/${randomNumber()}`);
+      image.push(`https://picsum.photos/id/${number}/100/150`);
+      image.push(`https://picsum.photos/id/${number}/100/150`);
+      console.log(number)
     }
     console.table(image)
   };
@@ -99,5 +104,5 @@ document.addEventListener('DOMContentLoaded', function (event) {
     shuffleTiles(tile);
     addTiles();
     addEvent();
-  })(10);
+  })(12);
 });
